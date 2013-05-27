@@ -43,6 +43,10 @@ class Crawler {
 		$this->json_path = $json_path;
 	}
 
+	function __destruct () {
+		$this->save();
+	}
+
 	public function save () {
 		file_put_contents($this->json_path . 'past_papers.json', json_encode($this->json));
 		return $this;
