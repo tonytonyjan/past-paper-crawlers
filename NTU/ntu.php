@@ -4,8 +4,6 @@ require_once __DIR__ . '/lib/Curl.php';
 require_once __DIR__ . '/lib/Crawler.php';
 define('DEBUG', True);
 
-// global variables
-
 function parseCategories ($url) {
 	$curl = new Curl();
 	$html = $curl->url($url)->add()->get();
@@ -56,6 +54,7 @@ function parseAndCraw (&$crawler, &$html, $exam_type = '入學考') {
 }
 
 function main () {
+	$crawler = new Crawler('NTU', './files/graduate/', './');
 	$curl = new Curl();
 	$root_url = 'http://exam.lib.ntu.edu.tw/views/ajax';
 	// arguments
@@ -70,21 +69,21 @@ function main () {
 		->key_value('view_name', 'exam');
 
 	// 碩班
-	$GradCrawler = new Crawler('NTU', './files/graduate/', './');
+	$crawler->save_dir = './files/graduate/';
 	$gradCategories = parseCategories('http://exam.lib.ntu.edu.tw/graduate');
 	$curl->key_value('view_display_id', 'page_1')
 		->key_value('view_args', implode(' ', $gradCategories));
 	$html = getHTML($curl);
 	$max_page = parseMaxpage($html);
-	parseAndCraw($GradCrawler, $html, '入學考');
+	parseAndCraw($crawler, $html, '入學考');
 	foreach (range(1, $max_page) as $i) {
 		$curl->key_value('page', $i);
 		$html = getHTML($curl);
-		parseAndCraw($GradCrawler, $html, '入學考');
+		parseAndCraw($crawler, $html, '入學考');
 	}
 
 	// 轉學考
-	$UndgradCrawler = new Crawler('NTU', './files/undergraduate/', './');
+	$crawler->save_dir = './files/undergraduate/';
 	$undgradCategories = parseCategories('http://exam.lib.ntu.edu.tw/undergra');
 	$cats = implode(' ', $undgradCategories);
 	// XXX: 管院那邊有某個category會炸掉
@@ -93,13 +92,12 @@ function main () {
 		->key_value('view_args', $cats);
 	$html = getHTML($curl);
 	$max_page = parseMaxpage($html);
-	parseAndCraw($UndgradCrawler, $html, '轉學考');
+	parseAndCraw($crawler, $html, '轉學考');
 	foreach (range(1, $max_page) as $i) {
 		$curl->key_value('page', $i);
 		$html = getHTML($curl);
-		parseAndCraw($UndgradCrawler, $html, '轉學考');
+		parseAndCraw($crawler, $html, '轉學考');
 	}
 }
 
 main();
-$crawler->save();

@@ -16,7 +16,7 @@ require_once __DIR__ . '/Curl.php';
 */
 class Crawler {
 	private $curl = null;
-	private $save_dir = '';
+	public $save_dir = '';
 	private $json_path = '';
 	private $json = [];
 	private $data = [
