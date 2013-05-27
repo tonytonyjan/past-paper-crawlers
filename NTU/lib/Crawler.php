@@ -41,7 +41,6 @@ class Crawler {
 		$this->curl->save_file(True);
 
 		$this->json_path = $json_path;
-		$this->json = file_exists($this->json_path) ? json_decode($this->json_path) : [];
 	}
 
 	public function save () {
@@ -59,9 +58,12 @@ class Crawler {
 		foreach ($urls as $i => $url) {
 			$filename = isset($filenames[$i]) ? $filenames[$i] 
 				: substr(strrchr($url, "/"), 1); // get filename by url
-			$this->curl->url($url)
-				->file_path($this->save_dir . $filename)
-				->add()->get();
+			$filename = $this->save_dir . $filename;
+			if (!is_file($filename)) {
+				$this->curl->url($url)
+					->file_path($filename)
+					->add()->get();
+			}
 			$files[] = $filename;
 		}
 		$this->insert_files($params, $files);
@@ -70,7 +72,7 @@ class Crawler {
 
 	// add a saved file into index.
 	public function insert_files ($params, $files) {
-		$data = $this->data;
+		$data = clone $this->data;
 		foreach ($params as $key => $value) {
 			$data->{$key} = $value;
 		}
