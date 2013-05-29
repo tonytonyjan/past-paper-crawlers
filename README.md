@@ -46,6 +46,18 @@ past_papers.json 為一個 array，內含多個 object：
 *   `file_paths`：為相對路徑。
 *   `exam_type`：(入學考 | 轉學考)，這次爬蟲應該只有入學、轉學兩者，如果有發現其他的種類，請在[文件]做討論。
 
+##  如何跑測試
+
+1.  安裝 Ruby。
+2.  安裝 rspec。
+
+        $ gem install rspec
+
+3.  將 `crawler_spec.rb` 與校園資料夾放在同一個目錄下。
+4.  跑測試。
+
+        $ rspec crawler_spec.rb
+
 ## 提示
 
 ### 取出系所和組別的表達式
