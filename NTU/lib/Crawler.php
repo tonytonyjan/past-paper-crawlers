@@ -80,9 +80,6 @@ class Crawler {
 		foreach ($params as $key => $value) {
 			$data->{$key} = $value;
 		}
-		foreach ($files as &$file) {
-			$file = $this->save_dir . $file;
-		}
 		$data->file_paths = $files;
 		$this->json[] = $data;
 		return $this;
