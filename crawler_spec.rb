@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'json'
 
 Dir['*'].select{|filename| File.directory?(filename)}.each do |dir|
