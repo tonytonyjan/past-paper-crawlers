@@ -63,21 +63,17 @@ past_papers.json 為一個 array，內含多個 object：
 ## 如何跑測試
 
 1.  安裝 Ruby。
-
 2.  安裝 rspec。
 
         $ gem install rspec
 
 3.  在 repository 目錄下。
-
     *   測試一個學校：
 
             $ SCHOOL_DIRS=NCTU rspec
-
     *   測試多個學校（用冒號 `:` 隔開）：
 
             $ SCHOOL_DIRS=NCTU:NTU:NTHU:NCKU rspec
-
     *   測試全部學校：
 
             $ rspec
