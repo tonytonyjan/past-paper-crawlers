@@ -17,10 +17,6 @@ dirs.each do |dir|
 
       it('should be an JSON Array'){should be_a_kind_of Array}
 
-      its(:length){
-        should eq past_papers.inject(0){|sum, item| sum + item["file_paths"].length}
-      }
-
       (JSON.parse(File.read("#{dir}/past_papers.json")) rescue []).each_with_index do |past_paper, i|
         describe "item ##{i}" do
           subject{past_paper}
