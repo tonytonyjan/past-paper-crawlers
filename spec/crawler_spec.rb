@@ -1,7 +1,12 @@
 # encoding: UTF-8
+require 'spec_helper'
 require 'json'
 
-Dir['*'].select{|filename| File.directory?(filename)}.each do |dir|
+dirs = Dir['*'].select{|filename|
+  filename != 'spec' && File.directory?(filename)
+} - File.read('passed_list').split
+
+dirs.each do |dir|
   describe dir do
     it 'should contains "past_papers.json".' do
       File.should exist("#{dir}/past_papers.json")
@@ -41,5 +46,5 @@ Dir['*'].select{|filename| File.directory?(filename)}.each do |dir|
         end
       end
     end
-  end
+  end  
 end

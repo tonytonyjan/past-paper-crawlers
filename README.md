@@ -10,7 +10,7 @@
 
 ### 規範
 
-*   本 repository 只接受程式碼。
+*   本 repository 只接受程式碼，請不要把爬完到的考古題檔案推上來，以免後來參與的人 clone 到海枯石爛。
 *   爬完的結果請放到 [SFTP]（權限請跟[大兜]索取）。
 
 ### 檔案結構
@@ -46,17 +46,34 @@ past_papers.json 為一個 array，內含多個 object：
 *   `file_paths`：為相對路徑。
 *   `exam_type`：(入學考 | 轉學考)，這次爬蟲應該只有入學、轉學兩者，如果有發現其他的種類，請在[文件]做討論。
 
-##  如何跑測試
+##  建議流程
 
-1.  安裝 Ruby。
-2.  安裝 rspec。
+1.  clone 本專案
 
-        $ gem install rspec
+        $ git clone git@github.com:tonytonyjan/xxxx
 
-3.  將 `crawler_spec.rb` 與校園資料夾放在同一個目錄下。
-4.  跑測試。
+2.  新增一個資料夾，開始寫爬蟲，並在資料夾下產生 `past_papers.json` 以及考古題檔案，以 `NCTU` 為例：
 
-        $ rspec crawler_spec.rb
+        $ mkdir NCTU
+        $ cd NCTU
+        $ vim crawler.rb
+        $ (edit)
+        $ ruby crawler.rb # 啪啪啪
+
+3.  跑測試
+
+        1.  安裝 Ruby。
+        2.  安裝 rspec。
+
+            $ gem install rspec
+
+        3.  跑測試
+
+            $ rspec crawler_spec.rb
+
+4.  測試跑過之後，記得在 `passed_list` 加上資料夾名稱。
+
+    $ echo NCTU >> passed_list
 
 ## 提示
 
