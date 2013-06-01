@@ -50,7 +50,7 @@ past_papers.json 為一個 array，內含多個 object：
 
 1.  clone 本專案。
 
-        $ git clone git@github.com:tonytonyjan/xxxx
+        $ git clone git@github.com:tonytonyjan/past-paper-crawlers.git
 
 2.  新增一個資料夾，開始寫爬蟲，並在資料夾下產生 `past_papers.json` 以及考古題檔案，以 `NCTU` 為例：
 
