@@ -48,7 +48,7 @@ past_papers.json 為一個 array，內含多個 object：
 
 ##  建議流程
 
-1.  clone 本專案
+1.  clone 本專案。
 
         $ git clone git@github.com:tonytonyjan/xxxx
 
@@ -60,20 +60,27 @@ past_papers.json 為一個 array，內含多個 object：
         $ (edit)
         $ ruby crawler.rb # 啪啪啪
 
-3.  跑測試
+## 如何跑測試
 
-        1.  安裝 Ruby。
-        2.  安裝 rspec。
+1.  安裝 Ruby。
 
-            $ gem install rspec
+2.  安裝 rspec。
 
-        3.  跑測試
+        $ gem install rspec
 
-            $ rspec crawler_spec.rb
+3.  在 repository 目錄下。
 
-4.  測試跑過之後，記得在 `passed_list` 加上資料夾名稱。
+    *   測試一個學校：
 
-    $ echo NCTU >> passed_list
+            $ SCHOOL_DIRS=NCTU rspec
+
+    *   測試多個學校（用冒號 `:` 隔開）：
+
+            $ SCHOOL_DIRS=NCTU:NTU:NTHU:NCKU rspec
+
+    *   測試全部學校：
+
+            $ rspec
 
 ## 提示
 

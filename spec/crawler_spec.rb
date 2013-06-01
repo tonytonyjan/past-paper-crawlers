@@ -2,9 +2,9 @@
 require 'spec_helper'
 require 'json'
 
-dirs = Dir['*'].select{|filename|
+dirs = ENV['SCHOOL_DIRS'].nil? ? Dir['*'].select{|filename|
   filename != 'spec' && File.directory?(filename)
-} - File.read('passed_list').split
+} : ENV['SCHOOL_DIRS'].split(':')
 
 dirs.each do |dir|
   describe dir do
