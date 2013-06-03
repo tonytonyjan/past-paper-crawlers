@@ -1,7 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
 require 'fileutils'
-require 'digest'
 require 'json'
 past_papers = []
 FileUtils.mkdir_p 'files'
