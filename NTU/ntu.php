@@ -54,7 +54,7 @@ function parseAndCraw (&$crawler, &$html, $exam_type = '入學考') {
 }
 
 function main () {
-	$crawler = new Crawler('NTU', './files/graduate/', './');
+	$crawler = new Crawler('國立台灣大學', './files/graduate/', './');
 	$curl = new Curl();
 	$root_url = 'http://exam.lib.ntu.edu.tw/views/ajax';
 	// arguments
